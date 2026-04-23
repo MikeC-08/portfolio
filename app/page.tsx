@@ -46,7 +46,7 @@ export default async function Home() {
         </div>
         <div className="md:col-span-2 text-lg text-slate-600 leading-relaxed space-y-4">
           <p>
-            Hello! I am Chan Man Kit <iframe src="https://ghbtns.com/github-btn.html?user=twbs&repo=bootstrap&type=star&size=large&text=false" frameBorder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe><br></br> A Computer Science graduate with a solid foundation in programming.
+            Hello! I am Chan Man Kit <iframe src="https://ghbtns.com/github-btn.html?user=MikeC-08&type=follow&count=false&size=large" frameBorder="0" scrolling="0" width="230" height="30" title="GitHub"></iframe><br></br> A Computer Science graduate with a solid foundation in programming.
           </p>
           <p> I am passionate about using
             <span className="text-slate-900 font-semibold"> Python </span> 
