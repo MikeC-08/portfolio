@@ -3,8 +3,8 @@ export interface Project {
   title: string;
   description: string;
   tags: string[];
-  githubRepoOwner?: string; // 加入可選欄位，有些專案可能還沒開源
-  githubRepo?: string; // 加入可選欄位，有些專案可能還沒開源
+  githubRepoOwner?: string; 
+  githubRepo?: string; 
 }
 
 export const PROJECTS: Project[] = [

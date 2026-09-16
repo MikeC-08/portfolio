@@ -1,0 +1,12 @@
+services:
+  next-app:
+    image: node:24-alpine
+    user: "root"  # 加上這一行
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    volumes: 
+      - .:/app
+    # 核心：確保容器啟動時是在 /app 裡面執行 npm
+    command: sh -c "npm install && npm run build && npm run start"
+    #command: sh -c "npm install && npm run dev"
