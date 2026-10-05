@@ -51,7 +51,7 @@ export default function ProjectGallery({ title, description, points, images, git
           <h2 className="text-3xl font-bold text-white tracking-tight">{title}</h2>
           <div className="flex gap-2">
             {tags?.map((tag, index) => (
-                <span className="px-2 py-1 bg-zinc-800 text-zinc-400 text-xs rounded">{tag}</span>
+                <span key={index} className="px-2 py-1 bg-zinc-800 text-zinc-400 text-xs rounded">{tag}</span>
             ))}
           </div>
           <p className="text-zinc-300 leading-relaxed">
@@ -59,7 +59,7 @@ export default function ProjectGallery({ title, description, points, images, git
           </p>
           <ul className="text-zinc-400 text-sm space-y-2">
             {points?.map((point, index) => (
-                <li>{point}</li>
+                <li key={index}>{point}</li>
             ))}
           </ul>
         </div>

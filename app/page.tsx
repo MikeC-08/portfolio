@@ -3,10 +3,9 @@ import { Metadata } from 'next';
 import avatar from '@/assets/images/Avatar.png'
 import real_avatar from '@/assets/images/Avatar_real.png'
 import Link from 'next/link';
-import clientPromise from "@/lib/mongodb";
 import ProjectGallery from '@/components/ProjectGallery';
-import Rag_1_Img from '@/assets/images/portfolio/Rag_1.png';
-import Rag_2_Img from '@/assets/images/portfolio/Rag_2.png';
+import SB_1_Img from '@/assets/images/portfolio/SB_2.png';
+import SB_2_Img from '@/assets/images/portfolio/SB_1.png';
 import BIT_1_Img from '@/assets/images/portfolio/BIT_1.png';
 import BIT_2_Img from '@/assets/images/portfolio/BIT_2.png';
 import BIT_3_Img from '@/assets/images/portfolio/BIT_3.png';
@@ -23,22 +22,7 @@ export const metadata: Metadata = {
   title: 'HOME | CHANMAN.',
 };
 
-async function getProjects() {
-  const client = await clientPromise;
-// 1. 指定 Database 名稱為 "Career"
-  const db = client.db("Career"); 
-  
-  // 2. 指定 Collection 名稱為 "Projects" (注意首字母大寫)
-  // 3. 使用 .find({}).toArray() 抓取所有資料
-  const data = await db.collection("Projects").find({}).toArray();
-  // console.log(data)
-  
-// 4. 格式化資料，將 MongoDB 的 _id (ObjectId) 轉為字串
-  return data.map(item => ({
-    ...item,
-    _id: item._id.toString(),
-  })) as any[];
-}
+
 
 export default async function Home({searchParams}: {searchParams: { view?: string } }) {
 
@@ -82,16 +66,17 @@ export default async function Home({searchParams}: {searchParams: { view?: strin
             {/* 1. 頭像容器 - 保持原本的 Hover 切換邏輯 */}
             <div className="group relative w-48 h-48 rounded-full border-4 border-white/30 overflow-hidden shadow-2xl">
               {/* 底層：真人照片 */}
-              <img 
+              {/* <img 
                 src={real_avatar.src} 
                 className="absolute inset-0 w-full h-full object-cover" 
                 alt="Real Me"
-              />
+              /> */}
 
               {/* 上層：插畫頭像 */}
               <img 
                 src={avatar.src} 
-                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0" 
+                className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out" 
+                // className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0" 
                 alt="Avatar"
               />
             </div>
@@ -105,7 +90,7 @@ export default async function Home({searchParams}: {searchParams: { view?: strin
                 Python & Automation
               </span>
               <span className="px-2 py-1 bg-zinc-800 rounded transition-colors hover:bg-zinc-700">
-                AI-Driven Builder
+                Website Builder
               </span>
             </div>
           </div>
@@ -120,13 +105,13 @@ export default async function Home({searchParams}: {searchParams: { view?: strin
 
             {/* 下半部：自我介紹本文 */}
             <div className="max-w-prose space-y-5 text-base leading-relaxed text-zinc-300  sm:text-lg sm:leading-8 px-6 sm:px-0 text-left">
-              <p>Hi, I'm <span className="font-bold">Chan Man Kit</span>—better known as <span className="font-bold">Chanman.</span></p>
+              <p>Hi, I'm <span className="font-bold">Chan Man Kit</span></p>
               <p>A <span className="font-bold">Computer Science</span> graduate with a solid foundation in programming. </p>
               <p>
-                I am passionate about using <span className="font-bold">Python</span>-driven automation which focused on building functional tools that solve real-world problems.
+                Enjoy learning about the latest technologies and integrating cutting-edge techniques to enhance our lives.
               </p>
               <p>
-                Currently actively exploring the <span className="font-bold">React/Next.js</span> ecosystem, with the goal of becoming a <span className="font-bold">full-stack</span> developer capable of connecting AI models with modern front-end interfaces.
+                Currently seeking a job to fully realize my ambitions.
               </p>
             </div>
           </div>
@@ -137,13 +122,21 @@ export default async function Home({searchParams}: {searchParams: { view?: strin
               <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-zinc-50 text-center">
                 Portfolio
               </h1>
+      <ProjectGallery title="CHANMAN's Soundboard"
+                      description="CHANMAN's Soundboard is a desktop soundboard application built with Electron." 
+                      points={["• Multi-device synchronized audio output",
+                               "• Waveform Visual Editing", 
+                               "• Multi-language Support (i18n)"]} 
+                      images={[SB_1_Img.src, SB_2_Img.src]} 
+                      tags={["Node.js", "Electron.js", "Tailwind CSS", "Released"]}
+                      github='https://github.com/MikeC-08/CHANMAN-Soundboard'/>
       <ProjectGallery title="Gangster Survivor"
                       description="3D Survivor-like Game Project" 
                       points={["• Programmed core gameplay loops, weapon progression trees, and shop subsystems entirely through scalable Unreal Blueprints.", 
                                "• Managed feature branches and resolved complex binary asset conflicts utilizing Git version control."]} 
                       images={[GS_1_Img.src,GS_2_Img.src,GS_3_Img.src,GS_4_Img.src,GS_5_Img.src]} 
                       tags={["Unreal Engine", "Game Development"]}
-                      github='https://github.com/MikeC-08/RAG'/>
+                      github='https://github.com/MikeC-08/GangsterSurvivor'/>
       <ProjectGallery title="BIT"
                       description="Decentralized Game Asset & NFT Trading Platform (Graduation Project)" 
                       points={["• Architected a Web3 marketplace facilitating direct peer-to-peer (P2P) on-chain interactions via client-side JavaScript, ensuring trustless execution without server mediation.",
@@ -151,14 +144,7 @@ export default async function Home({searchParams}: {searchParams: { view?: strin
                       images={[BIT_1_Img.src, BIT_2_Img.src, BIT_3_Img.src]} 
                       tags={["Solidity", "Block Chain", "NFT-721", "IPFS"]}
                       github='https://github.com/MikeC-08/BIT'/>
-      <ProjectGallery title="RAG"
-                      description="Dynamic Document AI Engine" 
-                      points={["• Retrieval-Augmented Generation (RAG) vector database technique",
-                               "• Engineered a flexible RAG prototype enabling arbitrary raw document injection and dynamic text segmentation using LangChain pipelines over a local FAISS vector database.", 
-                               "• Integrated the bce-embedding-base_v1 model for semantic search indexing, streaming contextual data into Large Language Models (LLMs) to enhance query accuracy."]} 
-                      images={[Rag_1_Img.src, Rag_2_Img.src]} 
-                      tags={["Python", "RAG", "Vector Database", "AI", "LLM"]}
-                      github='https://github.com/MikeC-08/WF-Tradeable-items-Price-Checker'/>
+
       <ProjectGallery title="WF-TRADEABLE-ITEMS-PRICE-CHECKER"
                       description="Real-time In-Game Utility & OCR Data Aggregator" 
                       points={["• Developed a non-blocking asynchronous Windows desktop utility integrating Win32 API for active process monitoring, UI window injection, and event-driven automation.", 
@@ -166,7 +152,7 @@ export default async function Home({searchParams}: {searchParams: { view?: strin
                       ]} 
                       images={[WF_1_Img.src, WF_2_Img.src]} 
                       tags={["Python", "PySide6", "GUI", "OCR"]}
-                      github='https://github.com/MikeC-08/GangsterSurvivor'/>
+                      github='https://github.com/MikeC-08/WF-Tradeable-items-Price-Checker'/>
 
 
       </div>
