@@ -143,7 +143,7 @@ export default async function Home({searchParams}: {searchParams: { view?: strin
                                "• Deployed custom smart contracts (ERC-721/1155) using IPFS for immutable metadata storage, securing user asset ownership independently of game server lifecycles.", "• Built a Python Flask prototype server to demonstrate cross-platform game utility and sync asset validation."]} 
                       images={[BIT_1_Img.src, BIT_2_Img.src, BIT_3_Img.src]} 
                       tags={["Solidity", "Block Chain", "NFT-721", "IPFS"]}
-                      github='https://github.com/MikeC-08/BIT'/>
+                      github='https://github.com/MikeC-08/BITServer'/>
 
       <ProjectGallery title="WF-TRADEABLE-ITEMS-PRICE-CHECKER"
                       description="Real-time In-Game Utility & OCR Data Aggregator" 
